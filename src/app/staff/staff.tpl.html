@@ -33,15 +33,101 @@
             </div>
         </div>
 </div>-->
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-<div class="app-staff">
-    {{status}} {{employees}}
-    <ul class="employees">
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
 
-        <li ng-repeat="employee in employees track by $index">
-            <!-- track by $index-->
-            <span>{{employee.id}}</span>
-        </li>
+    tr:nth-child(even){background-color: #f2f2f2}
+
+    th {
+        background-color: #87CEEB;
+        color: black;
+    }
+    .ui-layout-pane {
+        background: #060606;
+        height: 100%;
+    }
+    .stretch {
+        width: 100%;
+        overflow: hidden;
+    }
+</style>
+<div class="stretch">
+    <input ng-model="search.title" placeholder="Search" style="width: 80%" />Size: {{photos.length}}
+    <p>
+    <ul ng-repeat="photo in photos | filter:search | limitTo:10">
+        <li>
+            <img ng-src="{{photo.url_sq}}">
+            <br><b>{{photo.title}}</b>
+
+            <br>Lat: {{photo.latitude}} Lon: {{photo.longitude}}
+            <br>{{photo.tags}}</li>
     </ul>
+    </p>
+</div>
+<div class="left">
+    <div class="searching">
+        <p>
+            Search:
+            <input ng-model="$ctrl.query" />
+        </p>
+
+        <p>
+            Sort by:
+            <select ng-model="$ctrl.orderProp">
+                <option value="name">Alphabetical</option>
+                <option value="age">Newest</option>
+            </select>
+        </p>
+    </div>
+    <div class="app-staff">
+        <!--{{status}} {{employees}}-->
+        <!--<ul class="employees">-->
+            <table border="1" class="employees">
+                <tr>
+                    <th>Name</th>
+                    <th>Job Title</th>
+                    <th>Age</th>
+                    <th>Grade</th>
+                </tr>
+                <tr ng-repeat="employee in employees | filter:$ctrl.query | orderBy:$ctrl.orderProp">
+                    <td>{{employee.name}}</td>
+                    <td>{{employee.job}}</td>
+                    <td>{{employee.age}}</td>
+                    <td>{{employee.grade}}</td>
+                </tr>
+            </table>
+            <!--<li ng-repeat="employee in employees track by $index">
+                <span>{{employee.id}}</span>
+            </li>-->
+        <!--</ul>-->
+    </div>
+</div>
+<!--add two tab-panes-->
+<div class="right" align="right">
+    <div class="add-box">
+        <div style="float:right;margin:20px;">
+            <input type="text" ng-model="teamname" placeholder="Enter the Team" />
+            <p><button ng-click="add()">Add the Team</button></p>
+        </div>
+
+    </div>
+    <div class="teamlist">
+        <table border="1" class="teams">
+            <tr>
+                <th>Team title</th>
+            </tr>
+            <tr ng-repeat="team in teams">
+                <td>{{team.teamname}}</td>
+            </tr>
+        </table>
+    </div>
 </div>
 <div ui-view></div>

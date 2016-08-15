@@ -34,6 +34,7 @@ module.exports = function(grunt) {
                 js: [
                     '<%=bowerDir%>/jquery/dist/jquery.js',
                     '<%=bowerDir%>/angular/angular.js',
+                    '<%=bowerDir%>/angular-bootstrap/ui-bootstrap.js',
                     '<%=bowerDir%>/angular-sanitize/angular-sanitize.js',
                     '<%=bowerDir%>/bootstrap/dist/js/bootstrap.js',
                     '<%=bowerDir%>/angular-ui-router/release/angular-ui-router.js',
@@ -151,7 +152,18 @@ module.exports = function(grunt) {
                     }
                 ]
             },
-            vendor: '<%= frontend.vendor.assets %>'
+            vendor: '<%= frontend.vendor.assets %>',
+            source: {
+                files: [
+                {
+                    src: [
+                        '**/*.json'
+                    ],
+                    dest: '<%= buildDir %>/src',
+                    cwd: 'src/source',
+                    expand: true
+                }
+            ]}
         }
     });
 
@@ -385,34 +397,58 @@ module.exports = function(grunt) {
     });
 
 
+    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.extendConfig({
+      connect: {
+        server: {
+          options: {
+            // middleware: [
+            //   function myMiddleware(req, res, next) {
+            //     console.log("Current url", req.url);
+            //     next();
+            //   }
+            // ],
+            port: 8080,
+            base: {
+              path: './build',
+              options: {
+                index: 'index.html',
+                maxAge: 300000
+              }
+            }            
+          }
+        }
+      }
+    });    
+
     /**
      * Http server for development
      */
-    grunt.loadNpmTasks('grunt-http-server');
-    grunt.extendConfig({
-        'http-server': {
-            dev: {
-                root: './build',
-                port: 8080,
-                host: "localhost",
-                cache: 0,
-                showDir : true,
-                autoIndex: true,
-                // server default file extension
-                ext: "html",
-                // run in parallel with other tasks
-                runInBackground: true
-            }
-        }
-    });
+    // grunt.loadNpmTasks('grunt-http-server');
+    // grunt.extendConfig({
+    //     'http-server': {
+    //         dev: {
+    //             root: './build',
+    //             port: 8080,
+    //             host: "localhost",
+    //             cache: 0,
+    //             showDir : true,
+    //             autoIndex: true,
+    //             // server default file extension
+    //             ext: "html",
+    //             // run in parallel with other tasks
+    //             runInBackground: true
+    //         }
+    //     }
+    // });
 
-    grunt.extendConfig({
-        'http-server': {
-            prod: _.extend({}, grunt.config.get('http-server.dev'), {
-                runInBackground: false
-            })
-        }
-    });
+    // grunt.extendConfig({
+    //     'http-server': {
+    //         prod: _.extend({}, grunt.config.get('http-server.dev'), {
+    //             runInBackground: false
+    //         })
+    //     }
+    // });
 
 
 
@@ -468,7 +504,7 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('up', [
-        'build', 'http-server:dev', 'watch'
+        'build', 'connect', 'watch'
     ]);
 
     grunt.registerTask('up:compile', [
