@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="awesome-app">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Awesome App</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="assets/awesome-app-vendor-0.0.1.css"/>
+<link rel="stylesheet" type="text/css" href="assets/awesome-app-app-0.0.1.css"/>
+</head>
+<body ng-cloak>
+
+<awesome-header
+        awesome-header-title="Awesome App"
+        awesome-header-home-state="home">
+    <li ui-sref-active="active"><a ui-sref="home">Home</a></li>
+    <li ui-sref-active="active"><a ui-sref="about">About</a></li>
+    <li ui-sref-active="active"><a ui-sref="staff">Staff</a></li>
+    <!--<li class="dropdown">
+        <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Learn <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="//stackoverflow.com/questions/14994391/thinking-in-angularjs-if-i-have-a-jquery-background" target="_blank">Thinking in AngularJS</a></li>
+            <li><a href="//github.com/johnpapa/angularjs-styleguide" target="_blank">AngularJS Style Guide</a></li>
+            <li><a href="//stackoverflow.com/questions/20286917/angularjs-understanding-design-pattern" target="_blank">AngularJS Design Pattern</a></li>
+            <li><a href="//angular-ui.github.io/ui-router/site/" target="_blank">Angular UI Router</a></li>
+            <li><a href="//angular-ui.github.io/bootstrap/" target="_blank">Angular UI Bootstrap</a></li>
+            <li><a href="//andyshora.com/promises-angularjs-explained-as-cartoon.html" target="_blank">Promises in AngularJS</a></li>
+            <li><a href="//www.youtube.com/user/angularjs" target="_blank">Watch</a></li>
+            <li><a href="//docs.angularjs.org/misc/faq" target="_blank">FAQ</a></li>
+        </ul>
+    </li>-->
+</awesome-header>
+
+<div ui-view class="container"></div>
+
+<awesome-footer>
+    <li><a href="//angular.codeschool.com" target="_blank">AngularJS CodeSchool</a></li>
+</awesome-footer>
+
+
+<script type="text/javascript" src="vendor/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="vendor/angular/angular.js"></script>
+<script type="text/javascript" src="vendor/angular-bootstrap/ui-bootstrap.js"></script>
+<script type="text/javascript" src="vendor/angular-sanitize/angular-sanitize.js"></script>
+<script type="text/javascript" src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+<script type="text/javascript" src="vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script type="text/javascript" src="src/app/about/about.js"></script>
+<script type="text/javascript" src="src/app/about/aboutCtrl.js"></script>
+<script type="text/javascript" src="src/app/app.js"></script>
+<script type="text/javascript" src="src/app/home/home.js"></script>
+<script type="text/javascript" src="src/app/home/homeCtrl.js"></script>
+<script type="text/javascript" src="src/app/staff/staff.js"></script>
+<script type="text/javascript" src="src/app/staff/staffCtrl.js"></script>
+<script type="text/javascript" src="src/common/common.js"></script>
+<script type="text/javascript" src="src/common/components/components.js"></script>
+<script type="text/javascript" src="src/common/components/footer/footer.js"></script>
+<script type="text/javascript" src="src/common/components/footer/footerDirective.js"></script>
+<script type="text/javascript" src="src/common/components/header/header.js"></script>
+<script type="text/javascript" src="src/common/components/header/headerDirective.js"></script>
+<script type="text/javascript" src="src/common/components/version/version.js"></script>
+<script type="text/javascript" src="src/common/components/version/versionDirective.js"></script>
+<script type="text/javascript" src="src/common/components/version/versionInterpolateFilter.js"></script>
+<script type="text/javascript" src="src/common/components/version/versionValue.js"></script>
+<script type="text/javascript" src="src/common/features/abstract-entity/abstractEntity.js"></script>
+<script type="text/javascript" src="src/common/features/features.js"></script>
+<script type="text/javascript" src="src/common/features/team-member/teamMember.js"></script>
+<script type="text/javascript" src="src/common/features/team-member/teamMemberCollection.js"></script>
+<script type="text/javascript" src="src/common/features/team-member/teamMemberModel.js"></script>
+<script type="text/javascript" src="src/templates-app.js"></script>
+<script type="text/javascript" src="src/templates-vendor.js"></script>
+
+</body>
+</html>
